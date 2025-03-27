@@ -1,13 +1,18 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc';
-import tailwindcss from "@tailwindcss/vite";
+/* eslint-disable no-undef */
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { resolve } from "path";
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
-
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
-    base: "/react-quiz/"
-})
+  plugins: [react()],
+  base: "/react-workshop-ref/",
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        nested: resolve(__dirname, 'slides.html'),
+      },
+    },
+  },
+});
